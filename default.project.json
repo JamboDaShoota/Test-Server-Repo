@@ -1,0 +1,81 @@
+{
+  "name": "Roblox_Test",
+  "tree": {
+    "$className": "DataModel",
+
+    "Workspace": {
+      "$ignoreUnknownInstances": true,
+      "$className": "Workspace",
+      "$path": "game/workspace"
+    },
+
+    "Lighting": {
+      "$ignoreUnknownInstances": true,
+      "$className": "Lighting",
+      "$path": "game/lights"
+    },
+
+    "ReplicatedFirst": {
+      "$ignoreUnknownInstances": true,
+      "$className": "ReplicatedFirst",
+      "$path": "game/ReplicatedFirst"
+    },
+
+    "ReplicatedStorage": {
+      "$ignoreUnknownInstances": true,
+      "$className": "ReplicatedStorage",
+      "Shared": {
+        "$path": "game/ReplicatedStorage/shared"
+      }
+    },
+
+    "ServerScriptService": {
+      "$ignoreUnknownInstances": true,
+      "$className": "ServerScriptService",
+      "Server": {
+        "$path": "game/ServerScriptService/server"
+      }
+    },
+
+    "ServerStorage": {
+      "$ignoreUnknownInstances": true,
+      "$className": "ServerStorage",
+      "storage": {
+        "$path": "game/ServerStorage/storage"
+      }
+    },
+    
+    "StarterGui": {
+      "$ignoreUnknownInstances": true,
+      "$className": "StarterGui"
+    },
+
+    "StarterPack": {
+      "$ignoreUnknownInstances": true,
+      "$className": "StarterPack"
+    },
+
+    "StarterPlayer": {
+      "$ignoreUnknownInstances": true,
+      "$className": "StarterPlayer",
+      "StarterCharacterScripts": {
+        "$ignoreUnknownInstances": true,
+        "$className": "StarterCharacterScripts",
+        "$path": "game/StarterPlayer/StarterCharacterScripts"
+      },
+      "StarterPlayerScripts": {
+        "$ignoreUnknownInstances": true,
+        "$className": "StarterPlayerScripts",
+        "$path": "game/StarterPlayerScripts",
+        "Client": {
+          "$path": "game/StarterPlayer/StarterPlayerScripts/client"
+        }
+      }
+    },
+
+    "SoundService": {
+      "$ignoreUnknownInstances": true,
+      "$className": "SoundService"
+    }
+  }
+}

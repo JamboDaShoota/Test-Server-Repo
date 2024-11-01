@@ -1,0 +1,69 @@
+{
+  "name": "Roblox_Test",
+  "tree": {
+    "$className": "DataModel",
+
+    "Workspace": {
+      "$className": "Workspace",
+      "$path": "game/workspace"
+    },
+
+    "Lighting": {
+      "$className": "Lighting",
+      "$path": "game/lights"
+    },
+
+    "ReplicatedFirst": {
+      "$className": "ReplicatedFirst",
+      "$path": "game/ReplicatedFirst"
+    },
+
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      "Shared": {
+        "$path": "game/ReplicatedStorage/shared"
+      }
+    },
+
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "Server": {
+        "$path": "game/ServerScriptService/server"
+      }
+    },
+
+    "ServerStorage": {
+      "$className": "ServerStorage",
+      "storage": {
+        "$path": "game/ServerStorage/storage"
+      }
+    },
+    
+    "StarterGui": {
+      "$className": "StarterGui"
+    },
+
+    "StarterPack": {
+      "$className": "StarterPack"
+    },
+
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+      "StarterCharacterScripts": {
+        "$className": "StarterCharacterScripts",
+        "$path": "game/StarterPlayer/StarterCharacterScripts"
+      },
+      "StarterPlayerScripts": {
+        "$className": "StarterPlayerScripts",
+        "$path": "game/StarterPlayerScripts",
+        "Client": {
+          "$path": "game/StarterPlayer/StarterPlayerScripts/client"
+        }
+      }
+    },
+
+    "SoundService": {
+      "$className": "SoundService"
+    }
+  }
+}
