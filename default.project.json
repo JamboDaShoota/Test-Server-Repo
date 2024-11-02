@@ -20,10 +20,7 @@
             "$className": "ReplicatedStorage"
         },
         "ServerScriptService": {
-            "$className": "ServerScriptService",
-            "server": {
-                "$path": "game/ServerScriptService/server"
-            }
+            "$className": "ServerScriptService"
         },
         "ServerStorage": {
             "$className": "ServerStorage"

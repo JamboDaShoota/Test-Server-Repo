@@ -31,7 +31,6 @@ class FolderHandler(FileSystemEventHandler):
             data = json.load(file)
 
         temp_path = relative_path[5:]
-        print(temp_path)
 
         # Split the relative path into parts for nested structure
         path_parts = temp_path.split(os.sep)
@@ -62,8 +61,10 @@ class FolderHandler(FileSystemEventHandler):
         with open(JSON_FILE_PATH, 'r') as file:
             data = json.load(file)
 
+        temp_path = relative_path[5:]
+
         # Split the relative path into parts for nested structure
-        path_parts = relative_path.split(os.sep)
+        path_parts = temp_path.split(os.sep)
         
         # Traverse the structure and remove the folder
         current_level = data["tree"]
