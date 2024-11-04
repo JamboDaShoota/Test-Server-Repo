@@ -47,16 +47,6 @@
         "SoundService": {
             "$ignoreUnknownInstances": true,
             "$className": "SoundService"
-        },
-        "": {
-            "$className": "Folder",
-            "Lighting": {
-                "$className": "Folder",
-                "yo": {
-                    "$className": "Folder",
-                    "$path": "tree/Lighting/yo"
-                }
-            }
         }
     }
 }

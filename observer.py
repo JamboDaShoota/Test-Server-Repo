@@ -9,6 +9,9 @@ PROJECT_FOLDER = os.path.dirname(os.path.abspath(__file__))
 JSON_FILE_PATH = os.path.join(PROJECT_FOLDER, "default.project.json")
 
 class FolderHandler(FileSystemEventHandler):
+
+    delete_list : dict = {}
+
     def on_created(self, event):
         if event.is_directory:  # Only act if a new folder is created
             relative_path = os.path.relpath(event.src_path, PROJECT_FOLDER)
@@ -19,11 +22,13 @@ class FolderHandler(FileSystemEventHandler):
 
     def on_deleted(self, event):
         if event.is_directory:  # Only act if a folder is deleted
-            relative_path = os.path.relpath(event.src_path, PROJECT_FOLDER)
+            relative_path : str = os.path.relpath(event.src_path, PROJECT_FOLDER)
             print(f"Folder deleted: {relative_path}")
 
             # Update JSON model
             self.remove_from_json_model(relative_path)
+
+            self.delete_list[relative_path.split(os.sep)[-1]] =  relative_path
 
     def update_json_model(self, relative_path):
         # Load current JSON data
@@ -95,6 +100,8 @@ def main():
         while True:
             time.sleep(1)  # Keep the script running
     except KeyboardInterrupt:
+        print(f"Delete list\n{event_handler.delete_list}")
+        event_handler.delete_list = None # Just double checking lol
         observer.stop()
     observer.join()
 
