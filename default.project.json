@@ -13,6 +13,7 @@
             "$path": "game/lights"
         },
         "ReplicatedFirst": {
+            "$ignoreUnknownInstances": true,
             "$className": "ReplicatedFirst",
             "$path": "game/ReplicatedFirst"
         },

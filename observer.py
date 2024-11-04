@@ -18,19 +18,31 @@ class FolderHandler(FileSystemEventHandler):
             print(f"New folder detected: {relative_path}")
 
             # Update JSON model
-            self.update_json_model(relative_path)
+            self.update_json_model(relative_path, False)
+
+        else:
+            relative_path = os.path.relpath(event.src_path, PROJECT_FOLDER)
+            if (relative_path[-4:] == ".lua" or relative_path[-5:] == ".luau") and (relative_path.split(os.sep)[-1][:5] != "init."):
+                print(f"New ModuleScript detected: {relative_path}")
+                # Update JSON model
+                self.update_json_model(relative_path, True)
 
     def on_deleted(self, event):
+        relative_path : str = os.path.relpath(event.src_path, PROJECT_FOLDER)
         if event.is_directory:  # Only act if a folder is deleted
-            relative_path : str = os.path.relpath(event.src_path, PROJECT_FOLDER)
             print(f"Folder deleted: {relative_path}")
 
             # Update JSON model
             self.remove_from_json_model(relative_path)
+        else:
+            if (relative_path[-4:] == ".lua" or relative_path[-5:] == ".luau") and (relative_path.split(os.sep)[-1][:5] != "init."):
+                print(f"ModuleScript deleted: {relative_path}")
+                # Update JSON model
+                self.remove_from_json_model(relative_path)
 
-            self.delete_list[relative_path.split(os.sep)[-1]] =  relative_path
+        self.delete_list[relative_path.split(os.sep)[-1]] = relative_path
 
-    def update_json_model(self, relative_path):
+    def update_json_model(self, relative_path, isFile : bool):
         # Load current JSON data
         with open(JSON_FILE_PATH, 'r') as file:
             data = json.load(file)
@@ -52,6 +64,8 @@ class FolderHandler(FileSystemEventHandler):
             current_level = current_level[part]
 
         # Update the path property for the newly added folder
+        if isFile:
+            current_level["$className"] = "ModuleScript"
         current_level["$path"] = os.path.join("game", *path_parts)
 
         # Write back the updated JSON data
@@ -66,7 +80,7 @@ class FolderHandler(FileSystemEventHandler):
         with open(JSON_FILE_PATH, 'r') as file:
             data = json.load(file)
 
-        temp_path = relative_path[5:]
+        temp_path = relative_path[5:] # this is to remove game from the path
 
         # Split the relative path into parts for nested structure
         path_parts = temp_path.split(os.sep)
@@ -79,11 +93,11 @@ class FolderHandler(FileSystemEventHandler):
             else:
                 return  # If the folder doesn't exist, exit
 
-        # Remove the folder
+        # Remove the folder or file 
         folder_to_remove = path_parts[-1]
         if folder_to_remove in current_level:
             del current_level[folder_to_remove]
-            print(f"Removed folder from JSON model: {relative_path}")
+            print(f"Removed folder/file from JSON model: {relative_path}")
 
         # Write back the updated JSON data
         with open(JSON_FILE_PATH, 'w') as file:
