@@ -56,7 +56,7 @@ class FolderHandler(FileSystemEventHandler):
             # Move to the next level down in the tree
             current_level = current_level[part]
 
-        current_level["$className"] = "Folder"
+        # current_level["$className"] = "Folder"
         current_level["$path"] = os.path.join("game", *path_parts)
 
         # Write back the updated JSON data
