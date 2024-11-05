@@ -13,16 +13,22 @@ class FolderHandler(FileSystemEventHandler):
     delete_list : dict = {}
 
     def on_created(self, event):
-        if event.is_directory:  # Only act if a new folder is created
+        prefix = "vs_"
+        if event.is_directory and os.path.basename(event.src_path).startswith(prefix):  # Only act if a new folder is created and starts with mf
+            
             relative_path = os.path.relpath(event.src_path, PROJECT_FOLDER)
+            
             print(f"New folder detected: {relative_path}")
 
             # Update JSON model
             self.update_json_model(relative_path)
 
     def on_deleted(self, event):
-        relative_path : str = os.path.relpath(event.src_path, PROJECT_FOLDER)
-        if event.is_directory:  # Only act if a folder is deleted
+        prefix = "vs_"
+        if event.is_directory and os.path.basename(event.src_path).startswith(prefix) :  # Only act if a folder is deleted
+
+            relative_path : str = os.path.relpath(event.src_path, PROJECT_FOLDER)
+            
             print(f"Folder deleted: {relative_path}")
 
             # Update JSON model
@@ -50,6 +56,7 @@ class FolderHandler(FileSystemEventHandler):
             # Move to the next level down in the tree
             current_level = current_level[part]
 
+        current_level["$className"] = "Folder"
         current_level["$path"] = os.path.join("game", *path_parts)
 
         # Write back the updated JSON data
